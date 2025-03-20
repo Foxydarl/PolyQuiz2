@@ -3,7 +3,11 @@ import { io } from "socket.io-client"
 import { WEBSOCKET_PUBLIC_URL } from "../../config.mjs"
 
 export const socket = io(WEBSOCKET_PUBLIC_URL, {
-  transports: ["websocket"],
+  transports: ["websocket", "polling"],
+  path: "/socket.io/",
+  reconnectionAttempts: 5,
+  reconnectionDelay: 1000,
+  timeout: 20000
 })
 
 export const SocketContext = createContext()
