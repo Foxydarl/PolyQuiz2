@@ -9,7 +9,7 @@ let gameState = deepClone(GAME_STATE_INIT)
 
 const io = new Server({
   cors: {
-    origin: "https://polyquiz.aspc.kz:3000",
+    origin: "http://polyquiz.aspc.kz:3000",
     methods: ["GET", "POST"],
     credentials: true
   },
