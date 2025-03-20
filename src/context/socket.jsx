@@ -3,6 +3,7 @@ import { io } from "socket.io-client"
 import { WEBSOCKET_PUBLIC_URL } from "../../config.mjs"
 
 export const socket = io(WEBSOCKET_PUBLIC_URL, {
+  path: "/socket.io",
   transports: ["websocket"],
 })
 
