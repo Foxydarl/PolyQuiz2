@@ -3,12 +3,19 @@ import { io } from "socket.io-client"
 import { WEBSOCKET_PUBLIC_URL } from "../../config.mjs"
 
 export const socket = io(WEBSOCKET_PUBLIC_URL, {
-  transports: ["websocket", "polling"],
-  path: "/socket.io/",
-  reconnectionAttempts: 5,
+  transports: ["polling", "websocket"],
+  autoConnect: true,
+  reconnection: true,
+  reconnectionAttempts: 10,
   reconnectionDelay: 1000,
-  timeout: 20000
+  forceNew: true,
+  timeout: 10000,
 })
+
+socket.on("connect_error", (error) => {
+  console.log("Connection error:", error);
+  socket.io.opts.transports = ["polling", "websocket"];
+});
 
 export const SocketContext = createContext()
 
