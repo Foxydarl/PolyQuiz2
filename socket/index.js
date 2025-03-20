@@ -9,8 +9,12 @@ let gameState = deepClone(GAME_STATE_INIT)
 
 const io = new Server({
   cors: {
-    origin: "*",
+    origin: "https://polyquiz.aspc.kz:3000",
+    methods: ["GET", "POST"],
+    credentials: true
   },
+  path: "/socket.io/",
+  transports: ["websocket", "polling"]
 })
 
 console.log(`Server running on port ${WEBSOCKET_SERVER_PORT}`)
